@@ -13,7 +13,7 @@ UCLASS()
 class OBJECTREFLECTION_API UMyGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
-public:
+	public:
 	UMyGameInstance(); //持失切稽送
 
 	virtual void Init() override;
