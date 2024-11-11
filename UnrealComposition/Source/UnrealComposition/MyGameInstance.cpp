@@ -5,6 +5,7 @@
 #include "Student.h"
 #include "Teacher.h"
 #include "Staff.h"
+#include "Card.h"
 
 UMyGameInstance::UMyGameInstance() //생성자
 {
@@ -18,30 +19,34 @@ void UMyGameInstance::Init()
 	UE_LOG(LogTemp, Log, TEXT("======================================"));
 	//UPerson 부모 객체 포인터의 배열
 	TArray<UPerson*> Persons = { NewObject<UStudent>(), NewObject<UTeacher>(), NewObject<UStaff>() };
-	for (const auto Person : Persons) //포인터니까 그냥 auto로
-	{
-		UE_LOG(LogTemp, Log, TEXT("구성원 이름: %s"), *Person->GetName());
-	}
-	UE_LOG(LogTemp, Log, TEXT("======================================"));
 
-
-	//구성원이 가지고 있는 모든 DoLesson 함수를 호출할 것
-	//그 중 LessonInterface를 상속받은 클래스만 찾아야함
-	//casting을 유용하게 사용할 수 있다
 	for (const auto Person : Persons)
 	{
-		//언리얼은 형변환을 안전하게 할 수 있음
-		//형변환에 실패하면 null을 반환해 구현했는지 안했는지 알 수 있음
-		ILessonInterface* LessonInterface = Cast<ILessonInterface>(Person);
-		if (LessonInterface)
+
+		const UCard* OwnCard = Person->GetCard();
+		//if (OwnCard) {} 포함 관계이기 때문에 당연히 있음, 코드가 복잡해짐
+		check(OwnCard); //if문 대신 check를 써줘도 됨
+
+		ECardType CardType = OwnCard->GetCardType();
+		//UE_LOG(LogTemp, Log, TEXT("%s님이 소유한 카드 종류 %d"), *Person->GetName(), CardType);
+
+		//CardType이 가지고 있는 메타 데이터를 가져오기		
+		const UEnum* CardEnumType = FindObject<UEnum>(nullptr, TEXT("/Script/UnrealComposition.ECardType")); 
+		//두번째 인자 TEXT, TEXT에 들어가는 절대 주소값을 사용해 원하는 타입 정보를 가져올 수 있음
+		// /Script(절대 주소값)/모듈이름.타입이름
+		//보통 C++에 생성된 언리얼 객체들은 Script라고 하는 절대 주소를 가짐
+		//UnrealComposition(프로젝트 이름)이 모듈 이름이 됨
+
+		if (CardEnumType)
 		{
-			UE_LOG(LogTemp, Log, TEXT("%s님은 수업에 참여할 수 있습니다."), *Person->GetName());
-			LessonInterface->DoLesson();
-		}
-		else
-		{
-			UE_LOG(LogTemp, Log, TEXT("%s님은 수업에 참여할 수 없습니다."), *Person->GetName());
+			//타입 정보가 있다면 그것을 활용해서 GetDisplayNameTextByValue으로 메타데이터 추출
+			//GetDisplayNameTextByValue은 int64만 받음
+			FString CardMetaData = CardEnumType->GetDisplayNameTextByValue((int64)CardType).ToString();
+			//int64로 형변환해서 넣어줌, FText로 반환됨
+			//다국어 지원 문자열이기 때문에 출력할 때 String으로 변환
+			UE_LOG(LogTemp, Log, TEXT("%s님이 소유한 카드 종류 %s"), *Person->GetName(), *CardMetaData);
 		}
 	}
+
 	UE_LOG(LogTemp, Log, TEXT("======================================"));
 }
