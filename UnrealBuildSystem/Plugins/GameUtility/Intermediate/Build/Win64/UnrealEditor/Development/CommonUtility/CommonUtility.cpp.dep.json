@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\source\\commonutility\\commonutility.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\github\\unealstudy\\unrealbuildsystem\\intermediate\\build\\win64\\unrealbuildsystemeditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\intermediate\\build\\win64\\unrealeditor\\development\\commonutility\\definitions.commonutility.h",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\source\\commonutility\\commonutility.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

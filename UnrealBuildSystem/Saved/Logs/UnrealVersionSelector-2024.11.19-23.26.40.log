@@ -1,0 +1,81 @@
+Log started at 11/19/2024 23:26:40 (2024-11-19T14:26:40Z)
+Adding event matcher: CompileEventMatcher
+Adding event matcher: LinkEventMatcher
+Adding event matcher: MicrosoftEventMatcher
+Adding event matcher: XoreaxEventMatcher
+No config file at C:\Users\이희언컴퓨터공학과\Documents\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+Configuration will be read from:
+  C:\Users\이희언컴퓨터공학과\AppData\Roaming\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+Log file: D:\GitHub\UnealStudy\UnrealBuildSystem\Saved\Logs\UnrealVersionSelector-2024.11.19-23.26.40.log
+
+    Registering build platform: UnrealBuildTool.AndroidPlatformFactory
+Note: Android toolchain NDK r25b recommended
+        Registering build platform: Android - buildable: False
+    Registering build platform: UnrealBuildTool.IOSPlatformFactory
+        Registering build platform: IOS - buildable: False
+    Registering build platform: UnrealBuildTool.LinuxPlatformFactory
+        Registering build platform: Linux - buildable: False
+        Registering build platform: LinuxArm64 - buildable: False
+    Registering build platform: UnrealBuildTool.MacPlatformFactory
+    Registering build platform: UnrealBuildTool.TVOSPlatformFactory
+    Registering build platform: UnrealBuildTool.WindowsPlatformFactory
+Found Windows 10 SDK root at C:\Program Files (x86)\Windows Kits\10 (1)
+Found Windows 10 SDK root at C:\Program Files (x86)\Windows Kits\10 (2)
+Found Windows 10 SDK version 10.0.20348.0 at C:\Program Files (x86)\Windows Kits\10
+Found Universal CRT version 10.0.20348.0 at C:\Program Files (x86)\Windows Kits\10
+Found Windows 10 SDK version 10.0.22000.0 at C:\Program Files (x86)\Windows Kits\10
+Found Universal CRT version 10.0.22000.0 at C:\Program Files (x86)\Windows Kits\10
+Win64 Installed SDK(s): MinVersion_Sdk=10.0.00000.0, MaxVersion_Sdk=10.9.99999.0, CurrentVersion_Sdk=10.0.22000.0, Version_AutoSdk=10.0.18362.0, CurrentVersion_AutoSdk=
+        Registering build platform: Win64 - buildable: True
+    Registering build platform: UnrealBuildTool.HoloLensPlatformFactory
+Log file: C:\Users\이희언컴퓨터공학과\AppData\Local\UnrealBuildTool\Log_GPF.txt
+Deleting old log file: C:\Users\이희언컴퓨터공학과\AppData\Local\UnrealBuildTool\Log_GPF-backup-2024.01.05-16.36.27.txt
+Resolved project argument D:/GitHub/UnealStudy/UnrealBuildSystem/UnrealBuildSystem.uproject to D:\GitHub\UnealStudy\UnrealBuildSystem\UnrealBuildSystem.uproject
+Registering project generator UnrealBuildTool.AndroidProjectGenerator for Android
+Registering project generator UnrealBuildTool.IOSProjectGenerator for IOS
+Registering project generator UnrealBuildTool.LinuxProjectGenerator for Linux
+Registering project generator UnrealBuildTool.LinuxProjectGenerator for LinuxArm64
+Registering project generator UnrealBuildTool.MacProjectGenerator for Mac
+Skipping project file generator registration for Mac due to no valid BuildPlatform.
+Registering project generator UnrealBuildTool.TVOSProjectGenerator for TVOS
+Skipping project file generator registration for TVOS due to no valid BuildPlatform.
+Registering project generator UnrealBuildTool.WindowsProjectGenerator for Win64
+Registering project generator UnrealBuildTool.HoloLensProjectGenerator for HoloLens
+Skipping project file generator registration for HoloLens due to no valid BuildPlatform.
+
+---   SDK INFO START   ---
+
+Some Platforms were skipped due to invalid SDK setup: IOS, Android, Linux, LinuxArm64.
+See the log file for detailed information
+
+---   SDK INFO END   ---
+
+Discovering modules, targets and source code for project...
+Found Visual Studio installation: C:\Program Files\Microsoft Visual Studio\2022\Community (Product=Microsoft.VisualStudio.Product.Community, Version=17.11.35327.3)
+Found Visual Studio toolchain: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120 (Family=14.41.34120, FamilyRank=2, Version=14.41.34123, Is64Bit=True, Preview=False, Architecture=x64, Error=False, Redist=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.40.33807)
+Detected supported platforms: Win64, IOS, Android, Linux, LinuxArm64
+Skipping D:\game\epicGames\UE_5.1\Engine\Intermediate\Build\BuildRules\UE5Rules.dll: File is installed
+Skipping D:\game\epicGames\UE_5.1\Engine\Intermediate\Build\BuildRules\UE5ProgramRules.dll: File is installed
+Generating target Editor for D:\GitHub\UnealStudy\UnrealBuildSystem\Intermediate\ProjectFiles\UE5.vcxproj
+Generating target Game for D:\GitHub\UnealStudy\UnrealBuildSystem\Intermediate\ProjectFiles\UE5.vcxproj
+Creating project rules assembly for D:\GitHub\UnealStudy\UnrealBuildSystem\UnrealBuildSystem.uproject...
+ Found 1 Plugins:
+  D:\GitHub\UnealStudy\UnrealBuildSystem\Plugins\GameUtility\GameUtility.uplugin
+ Found 2 Modules:
+  D:\GitHub\UnealStudy\UnrealBuildSystem\Source\UnrealBuildSystem\UnrealBuildSystem.Build.cs
+  D:\GitHub\UnealStudy\UnrealBuildSystem\Plugins\GameUtility\Source\CommonUtility\CommonUtility.Build.cs
+Compiled assembly file 'D:\GitHub\UnealStudy\UnrealBuildSystem\Intermediate\Build\BuildRules\UnrealBuildSystemModuleRules.dll' appears to be for a newer CLR version or is otherwise invalid.  Unreal Build Tool will try to recompile this assembly now.  (Exception: Could not load file or assembly 'D:\GitHub\UnealStudy\UnrealBuildSystem\Intermediate\Build\BuildRules\UnrealBuildSystemModuleRules.dll'. Format of the executable (.exe) or library (.dll) is invalid.)
+D:\GitHub\UnealStudy\UnrealBuildSystem\Plugins\GameUtility\Source\CommonUtility\CommonUtility.Build.cs(7,9): error CS1520: Method must have a return type
+Expecting to find a type to be declared in a target rules named 'UnrealBuildSystemEditorTarget'.  This type must derive from the 'TargetRules' type defined by Unreal Build Tool.
+BuildException: Expecting to find a type to be declared in a target rules named 'UnrealBuildSystemEditorTarget'.  This type must derive from the 'TargetRules' type defined by Unreal Build Tool.
+   at UnrealBuildTool.RulesAssembly.CreateTargetRules(String TargetName, UnrealTargetPlatform Platform, UnrealTargetConfiguration Configuration, String Architecture, FileReference ProjectFile, CommandLineArguments Arguments, ILogger Logger, Boolean IsTestTarget) in D:\build\++UE5\Sync\Engine\Saved\CsTools\Engine\Source\Programs\UnrealBuildTool\System\RulesAssembly.cs:line 738
+   at UnrealBuildTool.ProjectFileGenerator.AddProjectsForAllTargets(PlatformProjectGeneratorCollection PlatformProjectGenerators, List`1 AllGames, List`1 AllTargetFiles, String[] Arguments, ProjectFile& EngineProject, List`1 GameProjects, Dictionary`2 ProgramProjects, Dictionary`2 RulesAssemblies, ILogger Logger) in D:\build\++UE5\Sync\Engine\Saved\CsTools\Engine\Source\Programs\UnrealBuildTool\ProjectFiles\ProjectFileGenerator.cs:line 2406
+   at UnrealBuildTool.ProjectFileGenerator.GenerateProjectFiles(PlatformProjectGeneratorCollection PlatformProjectGenerators, String[] Arguments, ILogger Logger) in D:\build\++UE5\Sync\Engine\Saved\CsTools\Engine\Source\Programs\UnrealBuildTool\ProjectFiles\ProjectFileGenerator.cs:line 898
+   at UnrealBuildTool.GenerateProjectFilesMode.Execute(CommandLineArguments Arguments, ILogger Logger) in D:\build\++UE5\Sync\Engine\Saved\CsTools\Engine\Source\Programs\UnrealBuildTool\Modes\GenerateProjectFilesMode.cs:line 233
+   at UnrealBuildTool.UnrealBuildTool.Main(String[] ArgumentsArray) in D:\build\++UE5\Sync\Engine\Saved\CsTools\Engine\Source\Programs\UnrealBuildTool\UnrealBuildTool.cs:line 648
+WriteFileIfChanged() wrote 0 changed files of 0 requested writes.
+Timeline:
+
+[ 0.000]
+[ 0.000](+2.742) <unknown>
+[ 2.742]

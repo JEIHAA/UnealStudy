@@ -1,0 +1,31 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\intermediate\\build\\win64\\unrealgame\\shipping\\commonutility\\module.commonutility.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\github\\unealstudy\\unrealbuildsystem\\intermediate\\build\\win64\\unrealbuildsystem\\shipping\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\intermediate\\build\\win64\\unrealgame\\shipping\\commonutility\\definitions.commonutility.h",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\intermediate\\build\\win64\\unrealgame\\inc\\commonutility\\uht\\commonutility.init.gen.cpp",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\intermediate\\build\\win64\\unrealgame\\inc\\commonutility\\uht\\person.gen.cpp",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\source\\commonutility\\public\\person.h",
+            "d:\\game\\epicgames\\ue_5.1\\engine\\source\\runtime\\coreuobject\\public\\uobject\\noexporttypes.h",
+            "d:\\game\\epicgames\\ue_5.1\\engine\\source\\runtime\\coreuobject\\public\\uobject\\propertyaccessutil.h",
+            "d:\\game\\epicgames\\ue_5.1\\engine\\source\\runtime\\core\\public\\math\\unitconversion.h",
+            "d:\\game\\epicgames\\ue_5.1\\engine\\source\\runtime\\core\\public\\math\\unitconversion.inl",
+            "d:\\game\\epicgames\\ue_5.1\\engine\\source\\runtime\\core\\public\\misc\\optionalfwd.h",
+            "d:\\game\\epicgames\\ue_5.1\\engine\\source\\runtime\\core\\public\\internationalization\\polyglottextdata.h",
+            "d:\\game\\epicgames\\ue_5.1\\engine\\source\\runtime\\coreuobject\\public\\assetregistry\\arfilter.h",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\intermediate\\build\\win64\\unrealgame\\inc\\commonutility\\uht\\person.generated.h",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\intermediate\\build\\win64\\unrealgame\\inc\\commonutility\\uht\\personimpl.gen.cpp",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\source\\commonutility\\private\\personimpl.h",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\intermediate\\build\\win64\\unrealgame\\inc\\commonutility\\uht\\personimpl.generated.h",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\source\\commonutility\\private\\commonutility.cpp",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\source\\commonutility\\public\\commonutility.h",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\source\\commonutility\\private\\person.cpp",
+            "d:\\github\\unealstudy\\unrealbuildsystem\\plugins\\gameutility\\source\\commonutility\\private\\personimpl.cpp"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

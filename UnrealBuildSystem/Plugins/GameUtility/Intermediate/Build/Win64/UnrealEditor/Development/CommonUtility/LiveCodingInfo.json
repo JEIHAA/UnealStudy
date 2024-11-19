@@ -1,0 +1,13 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.CommonUtility.cpp.obj": [
+			"CommonUtility.init.gen.cpp.obj",
+			"Person.gen.cpp.obj",
+			"PersonImpl.gen.cpp.obj",
+			"CommonUtility.cpp.obj",
+			"Person.cpp.obj",
+			"PersonImpl.cpp.obj"
+		]
+	}
+}
