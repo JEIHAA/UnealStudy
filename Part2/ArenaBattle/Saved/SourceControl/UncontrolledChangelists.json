@@ -1,0 +1,24 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Blueprint/BP_Fountain.uasset",
+				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Maps/Step3.umap",
+				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Input/Actions/IA_Jump.uasset",
+				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Input/Actions/IA_Look.uasset",
+				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Input/Actions/IA_Move.uasset",
+				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Input/IMC_Default.uasset",
+				"D:/GitHub/UnealStudy/Part2/1_ArenaBattle/ArenaBattle/Content/ArenaBattle/Maps/Step2.umap",
+				"D:/GitHub/UnealStudy/Part2/1_ArenaBattle/ArenaBattle/Content/ThirdPerson/Blueprints/BP_ThirdPersonCharacter.uasset",
+				"D:/GitHub/UnealStudy/Part2/1_ArenaBattle/ArenaBattle/Content/ArenaBattle/Maps/Step3.umap",
+				"D:/GitHub/UnealStudy/Part2/1_ArenaBattle/ArenaBattle/Content/ArenaBattle/Blueprint/BP_Fountain.uasset",
+				"D:/GitHub/UnealStudy/Part2/1_ArenaBattle/ArenaBattle/Content/ArenaBattle/Blueprint/BP_Foun.uasset",
+				"D:/GitHub/UnealStudy/Part2/1_ArenaBattle/ArenaBattle/Content/ArenaBattle/Blueprint/BP_Fountine.uasset",
+				"D:/GitHub/UnealStudy/Part2/1_ArenaBattle/ArenaBattle/Content/ArenaBattle/Blueprint/BP_Fountaine.uasset"
+			]
+		}
+	]
+}
