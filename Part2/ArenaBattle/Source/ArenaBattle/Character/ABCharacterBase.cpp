@@ -4,6 +4,7 @@
 #include "Character/ABCharacterBase.h"
 #include "Components/CapsuleComponent.h"
 // Component's'임
+#include "ABCharacterControlData.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
@@ -52,5 +53,30 @@ AABCharacterBase::AABCharacterBase()
         GetMesh()->SetAnimInstanceClass(AnimInstanceClassRef.Class);
     }
 
+    // CharacterControlManager(Map)에 두 가지 컨트롤 데이터 추가
+    static ConstructorHelpers::FObjectFinder<UABCharacterControlData> ShoulderDataRef(TEXT("/Script/ArenaBattle.ABCharacterControlData'/Game/ArenaBattle/CharacterControl/ABC_Shoulder.ABC_Shoulder'"));
+    if (ShoulderDataRef.Object)
+    {
+        CharacterControlManager.Add(ECharacterControlType::Shoulder, ShoulderDataRef.Object);
+    }
 
+    static ConstructorHelpers::FObjectFinder<UABCharacterControlData> QuaterDataRef(TEXT("/Script/ArenaBattle.ABCharacterControlData'/Game/ArenaBattle/CharacterControl/ABC_Quarter.ABC_Quarter'"));
+    if (QuaterDataRef.Object)
+    {
+        CharacterControlManager.Add(ECharacterControlType::Quater, QuaterDataRef.Object);
+    }
+
+}
+
+// 컨트롤 데이터 세팅
+void AABCharacterBase::SetCharacterControlData(const UABCharacterControlData* CharacterControlData)
+{
+    
+    // Pawn
+    bUseControllerRotationYaw = CharacterControlData->bUseControllerRotationYaw;
+
+    // CharacterMovement
+    GetCharacterMovement()->bOrientRotationToMovement = CharacterControlData->bOrientRotationToMovement;
+    GetCharacterMovement()->bUseControllerDesiredRotation = CharacterControlData->bUseControllerDesiredRotation;
+    GetCharacterMovement()->RotationRate = CharacterControlData->RotationRate;
 }
