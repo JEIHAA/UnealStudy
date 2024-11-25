@@ -39,14 +39,14 @@ AABCharacterBase::AABCharacterBase()
 
     // 스켈레탈 메쉬 컴포넌트의 실제 애셋 부착
     // ThirdPersonCharacter에서 제공하는 메쉬와 클래스 사용
-    static ConstructorHelpers::FObjectFinder<USkeletalMesh> CharacterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/Characters/Mannequins/Meshes/SKM_Quinn_Simple.SKM_Quinn_Simple'"));
+    static ConstructorHelpers::FObjectFinder<USkeletalMesh> CharacterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/InfinityBladeWarriors/Character/CompleteCharacters/SK_CharM_Cardboard.SK_CharM_Cardboard'"));
     if (CharacterMeshRef.Object)
     {
         // 스켈레탈에는 메쉬를 가져와서 등록
         GetMesh()->SetSkeletalMesh(CharacterMeshRef.Object);
     }
 
-    static ConstructorHelpers::FClassFinder<UAnimInstance> AnimInstanceClassRef(TEXT("/Game/Characters/Mannequins/Animations/ABP_Quinn.ABP_Quinn_C"));
+    static ConstructorHelpers::FClassFinder<UAnimInstance> AnimInstanceClassRef(TEXT("/Game/ArenaBattle/Animation/ABP_ABCharacter.ABP_ABCharacter_C"));
     if (AnimInstanceClassRef.Class)
     {
         // 애니메이션에는 메쉬가 아니라 클래스 등록
