@@ -73,6 +73,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivate = "true"))
 	TObjectPtr<class UInputAction> QuaterMoveAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivate = "true"))
+	TObjectPtr<class UInputAction> AttackAction;
+
 
 	// 각 입력 액션에 대해서 매핑된 함수
 	// FInputActionValue 구조체.
@@ -83,4 +86,6 @@ protected:
 
 	// 현재 뷰 상태를 확인하기 위한 변수
 	ECharacterControlType CurrentCharacterControlType;
+
+	void Attack();
 };

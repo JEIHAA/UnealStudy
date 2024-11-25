@@ -65,6 +65,12 @@ AABCharacterPlayer::AABCharacterPlayer()
         QuaterMoveAction  = InputActionQuaterMoveRef.Object;
     }
 
+    static ConstructorHelpers::FObjectFinder<UInputAction> InputActionAttackRef(TEXT("/Script/EnhancedInput.InputAction'/Game/ArenaBattle/Input/Actions/IA_Attack.IA_Attack'"));
+    if (InputActionQuaterMoveRef.Object)
+    {
+        AttackAction = InputActionAttackRef.Object;
+    }
+
     CurrentCharacterControlType = ECharacterControlType::Quater;
 
 
@@ -160,6 +166,7 @@ void AABCharacterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputC
     EnhancedInputComponent->BindAction(ShoulderMoveAction, ETriggerEvent::Triggered, this, &AABCharacterPlayer::ShoulderMove);
     EnhancedInputComponent->BindAction(ShoulderLookAction, ETriggerEvent::Triggered, this, &AABCharacterPlayer::ShoulderLook);
     EnhancedInputComponent->BindAction(QuaterMoveAction, ETriggerEvent::Triggered, this, &AABCharacterPlayer::QuaterMove);
+    EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &AABCharacterPlayer::Attack);
 }
 
 // InputActionValue에서 XY값을 가져와 무브먼트 컴포넌트와 연결
@@ -220,6 +227,11 @@ void AABCharacterPlayer::QuaterMove(const FInputActionValue& Value)
 
 
 
+}
+
+void AABCharacterPlayer::Attack()
+{   
+    ProcessComboCommand();
 }
 
 

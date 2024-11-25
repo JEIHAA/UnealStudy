@@ -31,4 +31,42 @@ protected:
 	UPROPERTY(EditAnywhere, Category = CharacterControl, Meta = (AllowPrivateAccess = "true"))
 	TMap<ECharacterControlType, class UABCharacterControlData*> CharacterControlManager;
 
+// Combo Action Section (몽타주)
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animation)
+	TObjectPtr<class UAnimMontage> ComboActionMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UABComboActionData> ComboActionData;
+
+	void ProcessComboCommand();
+
+	// 몽타주가 시작될 때 호출
+	void ComboActionBegin();
+	// 몽타주가 모두 종료됐을 때 호출
+	// 몽타주에 설정된 델리게이트를 통해 바로 호출될 수 있도록
+	// 파라미터 맞추기
+	// 두 가지의 타입으로 되어 있는데,
+	// UAnimMotage에 선언되어 있는 델리게이트의 파라미터와 맞춘 것
+	// (FOnMontageEnded, class UAnimMontage* bool/*bInterrupted*/)
+	void ComboActionEnd(class UAnimMontage* TargetMontage, bool IsProperlyEnded);
+
+	// 타이머를 발동시킬 함수
+	void SetComboCheckTimer();
+	// 타이머가 발동되면 입력이 들어왔는지 안들어왔느지를 체크하는 함수
+	void ComboCheck();
+
+	// 현재 콤보가 어디까지 진행됐는지를 저장하기 위한 변수
+	// 내부에서만 사용할 것이기 때문에 UPROPERTY는 붙이지 않았음
+	// 0 일때는 콤보가 시작되지 않은 것, 1보다 크거나 같으면 콤보가 시작된 것
+	int32 CurrentCombo = 0;
+
+	// 언리얼 엔진 월드에서 제공하는 타이머 기능을 이용해서
+	// 원하는 시간에 특정 함수를 호출하도록 설정할 수 있는 구조체
+	FTimerHandle ComboTimerHandle;
+	// 발동한 타이머 이전에 입력 커맨드가 들어왔는지 점검
+	// 내부에서만 사용하기 때문에 UPROPERTY를 붙이지 않고,
+	// 그렇기 때문에 정수형으로 boolean 값을 쓰지 않아도 됨
+	bool HasNextComboCommand = false;
+
 };

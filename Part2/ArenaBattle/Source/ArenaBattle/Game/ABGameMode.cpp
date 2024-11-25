@@ -26,7 +26,7 @@ AABGameMode::AABGameMode()
     //}
 
     // ABCharacterPlayer는 우리가 설정한 ABCharacterBase를 상속받았음. 때문에 ABCharacterPlayer 직접 스폰
-    static ConstructorHelpers::FClassFinder<APawn> DefaultPawnClassRef(TEXT("/Script/ArenaBattle.ABCharacterPlayer"));
+    static ConstructorHelpers::FClassFinder<APawn> DefaultPawnClassRef(TEXT("/Script/Engine.Blueprint'/Game/ArenaBattle/Blueprint/BP_ABCharacterPlayer.BP_ABCharacterPlayer_C'"));
     if (DefaultPawnClassRef.Class)
     {
         DefaultPawnClass = DefaultPawnClassRef.Class;
