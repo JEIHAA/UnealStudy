@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Interface/ABAnimationAttackInterface.h"
 #include "ABCharacterBase.generated.h"
 
 // 컨트롤 데이터 ENUM
@@ -15,7 +16,7 @@ enum class ECharacterControlType : uint8
 };
 
 UCLASS()
-class ARENABATTLE_API AABCharacterBase : public ACharacter
+class ARENABATTLE_API AABCharacterBase : public ACharacter, public IABAnimationAttackInterface
 {
 	GENERATED_BODY()
 
@@ -31,7 +32,7 @@ protected:
 	UPROPERTY(EditAnywhere, Category = CharacterControl, Meta = (AllowPrivateAccess = "true"))
 	TMap<ECharacterControlType, class UABCharacterControlData*> CharacterControlManager;
 
-// Combo Action Section (몽타주)
+// Combo Action Anim Section (몽타주)
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animation)
 	TObjectPtr<class UAnimMontage> ComboActionMontage;
@@ -69,4 +70,24 @@ protected:
 	// 그렇기 때문에 정수형으로 boolean 값을 쓰지 않아도 됨
 	bool HasNextComboCommand = false;
 
+
+// Attack Hit Section
+protected:
+	virtual void AttackHitCheck() override;
+	// 데미지를 입는 함수. AActor에서 상속받음
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+
+// Dead Anim Section (몽타주)
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UAnimMontage> DeadMontage;
+
+	// 죽는 상태 구현 함수
+	virtual void SetDead();
+	// 사망 모션 출력 함수
+	void PlayerDeadAnimation();
+
+	// 죽은 뒤 일정 시간이 지나고 어떤 이벤트가 발생하도록
+	// 시간 딜레이 변수
+	float DeadEventDelayTime = 5.0f;
 };
