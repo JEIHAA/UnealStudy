@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Interface/ABAnimationAttackInterface.h"
+#include "Interface/ABCharacterWidgetInterface.h"
 #include "ABCharacterBase.generated.h"
 
 // 컨트롤 데이터 ENUM
@@ -16,12 +17,19 @@ enum class ECharacterControlType : uint8
 };
 
 UCLASS()
-class ARENABATTLE_API AABCharacterBase : public ACharacter, public IABAnimationAttackInterface
+class ARENABATTLE_API AABCharacterBase : public ACharacter, public IABAnimationAttackInterface, public IABCharacterWidgetInterface
 {
 	GENERATED_BODY()
 
 public:
 	AABCharacterBase();
+
+	// 셋업을 종료하는 시점에서 BegingPlay가 실행되기 전인 
+	// Stat의 델리게이트를 등록해서 죽었을 때 죽는 모션을 수행하도록 처리
+	// BeginPlay에서 구현할 수도 있고 생성자에서 미리 바인딩할 수도 있는데
+	// 알아서 지정. 어디서 바인딩해도 크게 지장없음
+	virtual void PostInitializeComponents() override;
+
 
 protected:
 	// 캐릭터 컨트롤 데이터 애셋을 입력으로 받음
@@ -29,15 +37,15 @@ protected:
 	virtual void SetCharacterControlData(const class UABCharacterControlData* CharacterControlData);
 
 	// 두 가지 애셋 오브젝트를 얻어올 Map
-	UPROPERTY(EditAnywhere, Category = CharacterControl, Meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, Category = "CharacterControl", Meta = (AllowPrivateAccess = "true"))
 	TMap<ECharacterControlType, class UABCharacterControlData*> CharacterControlManager;
 
 // Combo Action Anim Section (몽타주)
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animation)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
 	TObjectPtr<class UAnimMontage> ComboActionMontage;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attack", Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UABComboActionData> ComboActionData;
 
 	void ProcessComboCommand();
@@ -79,7 +87,7 @@ protected:
 
 // Dead Anim Section (몽타주)
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat", Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UAnimMontage> DeadMontage;
 
 	// 죽는 상태 구현 함수
@@ -90,4 +98,19 @@ protected:
 	// 죽은 뒤 일정 시간이 지나고 어떤 이벤트가 발생하도록
 	// 시간 딜레이 변수
 	float DeadEventDelayTime = 5.0f;
+
+// Stat Section
+protected:
+	// 언리얼 엔진이 제공하는 컴포넌트
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Stat", Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UABCharacterStatComponent> Stat;
+
+// UI Widget Section
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget", Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UABWidgetComponent> HpBar;
+	// WidgetComponent가 아닌 ABWidgetComponent로 확장
+
+	// 인터페이스 함수 추가
+	virtual void SetupCharacterWidget(class UABUserWidget* InUserWidget) override;
 };

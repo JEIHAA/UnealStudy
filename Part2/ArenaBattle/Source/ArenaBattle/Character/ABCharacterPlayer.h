@@ -58,22 +58,22 @@ protected:
 	// 매핑 컨텍스트와 액션에 대한 애셋 지정
 	// 다른 애셋으로 변경할 수 있도록 설계하기 위해 EditAnywhere로 설정
 	// 1가지 매핑 컨텍스트와 3가지 액션. 3인칭 템플릿에서 제공하고 있는 것들을 사용
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivate = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", Meta = (AllowPrivate = "true"))
 	TObjectPtr<class UInputAction> JumpAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivate = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", Meta = (AllowPrivate = "true"))
 	TObjectPtr<class UInputAction> ChangeControlAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivate = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", Meta = (AllowPrivate = "true"))
 	TObjectPtr<class UInputAction> ShoulderMoveAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivate = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", Meta = (AllowPrivate = "true"))
 	TObjectPtr<class UInputAction> ShoulderLookAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivate = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", Meta = (AllowPrivate = "true"))
 	TObjectPtr<class UInputAction> QuaterMoveAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivate = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", Meta = (AllowPrivate = "true"))
 	TObjectPtr<class UInputAction> AttackAction;
 
 
