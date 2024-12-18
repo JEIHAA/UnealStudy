@@ -382,3 +382,9 @@ void AABCharacterBase::SetupCharacterWidget(UABUserWidget* InUserWidget)
         Stat->OnHpChanged.AddUObject(HpBarWidget, &UABHpBarWidget::UpdateHpBar);
     }
 }
+
+void AABCharacterBase::TakeItem(UABItemData* InItemData)
+{
+    // 받은 아이템 데이터의 열거형 값에 따라 서로 다른 액션을 수행
+    // 스위치문을 사용해도 되지만 델리게이트를 사용해봄
+}

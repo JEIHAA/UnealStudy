@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Interface/ABAnimationAttackInterface.h"
 #include "Interface/ABCharacterWidgetInterface.h"
+#include "Interface/ABCharacterItemInterface.h"
 #include "ABCharacterBase.generated.h"
 
 // 컨트롤 데이터 ENUM
@@ -16,8 +17,22 @@ enum class ECharacterControlType : uint8
 	Quater
 };
 
+// 아이템을 처리할 델리게이트
+DECLARE_DELEGATE_OneParam(FOnTakeItemDelegate, class UABItemData* /*InItemData*/);
+// FOnTakeItemDelegate를 배열로 관리하려고 하는 델리게이트.
+// 델리게이트 자체는 함수의 인자로 쓸 수 없음.
+// 쉽게 배열로 관리하려면 구조체로 감싸면 됨
+USTRUCT(BlueprintType)
+struct FTakeItemDelegateWrapper
+{
+	GENERATED_BODY()
+	FTakeItemDelegateWrapper() {}
+	FTakeItemDelegateWrapper(const FOnTakeItemDelegate& InItemDelegate) : ItemDelegate(InItemDelegate) {}
+	FOnTakeItemDelegate ItemDelegate;
+};
+
 UCLASS()
-class ARENABATTLE_API AABCharacterBase : public ACharacter, public IABAnimationAttackInterface, public IABCharacterWidgetInterface
+class ARENABATTLE_API AABCharacterBase : public ACharacter, public IABAnimationAttackInterface, public IABCharacterWidgetInterface, public IABCharacterItemInterface
 {
 	GENERATED_BODY()
 
@@ -113,4 +128,11 @@ protected:
 
 	// 인터페이스 함수 추가
 	virtual void SetupCharacterWidget(class UABUserWidget* InUserWidget) override;
+
+//Item Section
+protected:
+	UPROPERTY()
+	TArray<FTakeItemDelegateWrapper> TakeItemActions;
+
+	virtual void TakeItem(class UABItemData* InItemData) override;
 };

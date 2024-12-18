@@ -5,6 +5,10 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"C:/Users/gmldj/GitHub/UnealStudy/Part2/ArenaBattle/Content/Step4.umap",
+				"C:/Users/gmldj/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Item/Potion/ABIP_PotionTest.uasset",
+				"C:/Users/gmldj/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Item/Scroll/ABIS_ScrollTest.uasset",
+				"C:/Users/gmldj/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Item/Weapon/ABIW_Weapon1.uasset",
 				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Blueprint/BP_Fountain.uasset",
 				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Maps/Step3.umap",
 				"D:/GitHub/UnealStudy/Part2/ArenaBattle/Content/ArenaBattle/Input/Actions/IA_Jump.uasset",
