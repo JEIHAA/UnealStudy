@@ -135,4 +135,9 @@ protected:
 	TArray<FTakeItemDelegateWrapper> TakeItemActions;
 
 	virtual void TakeItem(class UABItemData* InItemData) override;
+	// TakeItemActions에 바인딩할 함수
+	virtual void DrinkPotion(class UABItemData* InItemData);
+	virtual void EquipWeapon(class UABItemData* InItemData);
+	virtual void ReadScroll(class UABItemData* InItemData);
+
 };

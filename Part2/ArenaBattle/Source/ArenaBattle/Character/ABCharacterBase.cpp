@@ -129,8 +129,16 @@ AABCharacterBase::AABCharacterBase()
         HpBar->SetDrawSize(FVector2D(150.0f, 15.0f));
         // 충돌처리같은 불필요한 설정 제거
         HpBar->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
     }
+
+    // Item Actions
+    // FTakeItemDelegateWrapper(구조체)의 인자로
+    // 클래스 멤버함수와 바인딩된 델리게이트를
+    // CreateUObject로 바로 생성해서 집어넣기
+    // CreateUObject(현재 객체 인스턴스, 연결할 함수)
+    TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::EquipWeapon)));
+    TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::DrinkPotion)));
+    TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::ReadScroll)));
 }
 
 void AABCharacterBase::PostInitializeComponents()
@@ -387,4 +395,16 @@ void AABCharacterBase::TakeItem(UABItemData* InItemData)
 {
     // 받은 아이템 데이터의 열거형 값에 따라 서로 다른 액션을 수행
     // 스위치문을 사용해도 되지만 델리게이트를 사용해봄
+}
+
+void AABCharacterBase::DrinkPotion(UABItemData* InItemData)
+{
+}
+
+void AABCharacterBase::EquipWeapon(UABItemData* InItemData)
+{
+}
+
+void AABCharacterBase::ReadScoll(UABItemData* InItemData)
+{
 }
