@@ -7,15 +7,17 @@
 #include "ABWeaponItemData.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class ARENABATTLE_API UABWeaponItemData : public UABItemData
 {
 	GENERATED_BODY()
-	
+
 public:
 	// 무기에 대한 스켈레탈 메쉬
-	UPROPERTY(EditAnywhere, Category="Weapon")
-	TObjectPtr<USkeletalMesh> WeaponMesh;
+	UPROPERTY(EditAnywhere, Category = "Weapon")
+	// 소프트 레퍼런싱을 위해 TObjectPtr이 아닌
+	// TSoftObjectPtr을 사용
+	TSoftObjectPtr<USkeletalMesh> WeaponMesh;
 };

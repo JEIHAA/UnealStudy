@@ -9,6 +9,10 @@
 #include "Interface/ABCharacterItemInterface.h"
 #include "ABCharacterBase.generated.h"
 
+// 아이템 델리게이트가 잘 연결되었는지 로그 찍기
+// LogABCharacter라는 카테고리로 지정, cpp에서 로그 카테고리 구현
+DECLARE_LOG_CATEGORY_EXTERN(LogABCharacter, Log, All);
+
 // 컨트롤 데이터 ENUM
 UENUM()
 enum class ECharacterControlType : uint8
@@ -131,6 +135,9 @@ protected:
 
 //Item Section
 protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Equipment", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class USkeletalMeshComponent> Weapon;
+
 	UPROPERTY()
 	TArray<FTakeItemDelegateWrapper> TakeItemActions;
 

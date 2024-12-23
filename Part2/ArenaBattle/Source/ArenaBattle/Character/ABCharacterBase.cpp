@@ -15,6 +15,11 @@
 // WidgetComponent가 아닌 ABWidgetComponent로 확장
 #include "UI/ABHpBarWidget.h"
 // UI폴더 같은 경우 직접 만든 기본 컴포넌트, 엔진이라고 생각하면 됨. 추가해도 됨
+#include "Item/ABWeaponItemData.h"
+
+// 로그 매크로의 카테고리 구현
+DEFINE_LOG_CATEGORY(LogABCharacter);
+//DEFINE_LOG_CATEGORY(LogABCharacter);
 
 // Sets default values
 AABCharacterBase::AABCharacterBase()
@@ -139,6 +144,14 @@ AABCharacterBase::AABCharacterBase()
     TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::EquipWeapon)));
     TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::DrinkPotion)));
     TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::ReadScroll)));
+
+    // Weapon Component
+    Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
+    // 해당 컴포넌트를 부착할 때 직접 트랜스폼을 정해주는 것이 아니라
+    // 캐릭터의 특정 본에 무기가 항상 부착되어 돌아다닐 수 있도록
+    // 소켓 이름을 지정해줌.
+    // 이 소켓은 애셋의 스켈레탈 메쉬에 이미 지정되어 있는 이름
+    Weapon->SetupAttachment(GetMesh(), TEXT("hand_rSocket")); 
 }
 
 void AABCharacterBase::PostInitializeComponents()
@@ -394,17 +407,44 @@ void AABCharacterBase::SetupCharacterWidget(UABUserWidget* InUserWidget)
 void AABCharacterBase::TakeItem(UABItemData* InItemData)
 {
     // 받은 아이템 데이터의 열거형 값에 따라 서로 다른 액션을 수행
-    // 스위치문을 사용해도 되지만 델리게이트를 사용해봄
+    // 스위치문을 사용해도 되지만 델리게이트를 사용
+
+    if (InItemData)
+    {
+        // InItemData의 타입 정보를 정수형으로 변환, 
+        // TakeItemActions 배열에 들어가게 되면
+        // 구조체로 접근할 수 있게 됨
+        // 델리게이트에 ExecuteIfBound 함수를 사용해
+        // 아이템 정보를 넘겨줌
+        TakeItemActions[(uint8)InItemData->Type].ItemDelegate.ExecuteIfBound(InItemData);
+    }
 }
 
 void AABCharacterBase::DrinkPotion(UABItemData* InItemData)
 {
+    UE_LOG(LogABCharacter, Log, TEXT("Drink Potion"));
 }
 
 void AABCharacterBase::EquipWeapon(UABItemData* InItemData)
 {
+    UABWeaponItemData* WeaponItemData = Cast<UABWeaponItemData>(InItemData);
+    if (WeaponItemData)
+    {
+        // TSoftObjectPtr은 바로 설정할 수 없음
+        // Weapon->SetSkeletalMesh(WeaponItemData->WeaponMesh);
+
+        // 오브젝트가 로딩되어있는지 확인
+        if (WeaponItemData->WeaponMesh.IsPending())
+        {
+            // 로딩되어 있지 않다면 동기적으로 로딩시키기
+            WeaponItemData->WeaponMesh.LoadSynchronous();
+        }
+        // Get함수로 가져와서 오브젝트 설정하기
+        Weapon->SetSkeletalMesh(WeaponItemData->WeaponMesh.Get());
+    }
 }
 
-void AABCharacterBase::ReadScoll(UABItemData* InItemData)
+void AABCharacterBase::ReadScroll(UABItemData* InItemData)
 {
+    UE_LOG(LogABCharacter, Log, TEXT("Read Scroll"));
 }

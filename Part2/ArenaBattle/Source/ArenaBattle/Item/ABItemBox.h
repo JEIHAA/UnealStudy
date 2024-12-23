@@ -27,10 +27,12 @@ protected:
 	// 파티클
 	UPROPERTY(VisibleAnywhere, Category = Effect)
 	TObjectPtr<class UParticleSystemComponent> Effect;
+
 	// 아이템 정보
-	UPROPERTY(EditAnywhere, Category="Item")
+	UPROPERTY(EditAnywhere, Category = "Item")
 	// 부모 클래스형을 지정해 어떤 아이템이든 대응
 	TObjectPtr<class UABItemData> Item;
+
 
 	// 트리거 컴포넌트의 델리게이트에 연결될 함수를 액터에 선언.
 	UFUNCTION()

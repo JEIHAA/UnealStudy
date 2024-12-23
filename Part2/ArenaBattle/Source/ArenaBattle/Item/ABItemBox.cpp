@@ -10,8 +10,7 @@
 
 // Sets default values
 AABItemBox::AABItemBox()
-{
-	// 각 포인터에 대한 객체 생성
+{	// 각 포인터에 대한 객체 생성
 	Trigger = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Effect = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Effect"));
@@ -58,37 +57,37 @@ AABItemBox::AABItemBox()
 // 트리거가 발동하면 호출됨
 void AABItemBox::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepHitResult)
 {
-	// 상자를 열었는데 꽝일 경우
-	if (nullptr == Item)
-	{
-		// 이펙트 없이 제거됨
-		Destroy();
-		return;
-	}
+    // 상자를 열었는데 꽝일 경우
+    if (nullptr == Item)
+    {
+        // 이펙트 없이 제거됨
+        Destroy();
+        return;
+    }
 
-	IABCharacterItemInterface* OverlappingPawn = Cast<IABCharacterItemInterface>(OtherActor);
-	if (OverlappingPawn) 
-	{
-		// 상자에 아이템이 있었다면 닿은 캐릭터에게 인자로 넘겨줌
-		OverlappingPawn->TakeItem(Item);
-	}
+    IABCharacterItemInterface* OverlappingPawn = Cast<IABCharacterItemInterface>(OtherActor);
+    if (OverlappingPawn)
+    {
+        // 상자에 아이템이 있었다면 닿은 캐릭터에게 인자로 넘겨줌
+        OverlappingPawn->TakeItem(Item);
+    }
 
-	// 이펙트 재생
-	Effect->Activate(true);
-	// 메쉬 숨기기
-	Mesh->SetHiddenInGame(true);
-	// 액터에 대한 콜리전 모두 끄기
-	SetActorEnableCollision(false);
+    // 이펙트 재생
+    Effect->Activate(true);
+    // 메쉬 숨기기
+    Mesh->SetHiddenInGame(true);
+    // 액터에 대한 콜리전 모두 끄기
+    SetActorEnableCollision(false);
 
-	// 발동된 이벤트가 종료될 때,
-	// 이펙트가 종료될 때 발동되는 델리게이트가 또 있음
-	// 마찬가지로 AddDynamic으로 설정
-	// Dynamic이기 때문에 헤더에서 연결할 UFUNCTION 함수 선언해줘야함
-	Effect->OnSystemFinished.AddDynamic(this, &AABItemBox::OnEffectFinished);
+    // 발동된 이벤트가 종료될 때,
+    // 이펙트가 종료될 때 발동되는 델리게이트가 또 있음
+    // 마찬가지로 AddDynamic으로 설정
+    // Dynamic이기 때문에 헤더에서 연결할 UFUNCTION 함수 선언해줘야함
+    Effect->OnSystemFinished.AddDynamic(this, &AABItemBox::OnEffectFinished);
 }
 
 void AABItemBox::OnEffectFinished(UParticleSystemComponent* ParticleSystem)
 {
-	// 액터가 스스로 없어지도록 설정
-	Destroy();
+    // 액터가 스스로 없어지도록 설정
+    Destroy();
 }
